@@ -1,20 +1,28 @@
 <template>
+<div>
+  <!-- <router-link to="/"> Início </router-link> -->
+  <!-- <router-link to="/questionario"> Formulários </router-link> -->
+  <!-- src="https://www6.tce.ma.gov.br/autentica/imagens/logo_tce_amfc.png" -->
+  
   <v-app id="app">
+    
+   
     <v-card
       class="flex black text-center"
       flat
       tile
     >
+    
     <v-container fluid>
       <v-card-title class="grey lighten-2">
         <v-img
           max-height="180" 
           max-width="350"
-          src="https://www6.tce.ma.gov.br/autentica/imagens/logo_tce_amfc.png"
+          src="src\assets\logo_tce.png"
           class="mb-10"
         >
         </v-img>
-          <Home/>
+          <router-view/>
       </v-card-title>
     </v-container>
       
@@ -24,22 +32,29 @@
       </v-card-text>
 
     </v-card>
+
+   
   </v-app>
+  </div>
 </template>
 
 <script>
-import Home from './components/Home';
+//import Home from './components/Home';
 
 export default {
   name: 'App',
+  mounted(){
+      this.$store.dispatch('loadQuestionarios');
+      
+    },
 
   components: {
-    Home,
+   // Home,
   },
 
-  data: () => ({
+ /*  data: () => ({
     //
-  }),
+  }), */
 };
 </script>
 

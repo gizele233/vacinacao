@@ -1,6 +1,5 @@
 <template>
   <v-container fluid>
-    
   <v-card 
     class="pa-md-4 mx-lg-auto mb-10 red darken-4"
     width="85%"
@@ -24,8 +23,9 @@
 
     <v-data-table
       :headers="headers"
-      :items="questionario"
+      :items="questionarios"
       :search="search"
+
       fixed-header
       hide-default-footer
       :page.sync="page"
@@ -33,12 +33,14 @@
       class="elevation-1"
       
     >
-      <template v-slot:[`item.acao`]>
+      <template v-slot:[`item.acao`]= "{item}">
         
           <v-btn
               icon
               color="red darken-4"
+              @click="acessar(item.formularioId)"
             >
+            
               <v-icon>mdi-format-list-bulleted-square</v-icon>
 
           </v-btn>
@@ -58,28 +60,48 @@
 </template>
 
 <script>
-  import QuestionarioService from "@/services/questionarioService.js";
+  //import QuestionarioService from "@/services/questionarioService.js";
+  import router from '../router/index.js';
+  
 
   export default {
-    questionarioService: null,
-    created(){
+
+    
+    computed:{
+      questionarios(){ return this.$store.state.questionarios},
+      questionario(){return this.$store.state.questionario}
+    },
+    
+    //questionarioService: null,
+    /* created(){
       this.questionarioService = new QuestionarioService();
       this.listarQuestion();
-    },
+    }, */
 
     methods: {
-      listarQuestion(){
+      /* listarQuestion(){
         this.questionarioService.questionAll().then(resposta => {
           this.questionario = resposta; //popula a tabela com o conteúdo da resposta da requisição
+          this.loading = false
         })
-      }
+      }, */
+       acessar(fomularioEscolhido){
+        router.push('/questionarios/'+ fomularioEscolhido)
+       /*  this.questionarioService.get(fomularioEscolhido).then(resposta =>{
+          this.fomularioEscolhido = resposta;
+          //console.log(this.fomularioEscolhido)
+        }) */
+      }, 
     },
+    
 
     data() {
       return {
         page: 1,
         search: '',
-        questionario: [],
+        loading: true,
+        fomularioEscolhido: [],
+        //questionario: [],
         headers: [
           {
             align: 'start',
@@ -93,4 +115,27 @@
       }
     }
   }
+  
 </script>
+
+<!-- COLOCADO POR MIM, YASMIN-->
+<style scoped>
+  
+
+  @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
+  
+  * {
+      padding:0;
+      margin:0;
+      vertical-align:baseline;
+      list-style:none;
+      border:0
+    }
+
+    #app {
+      font-family: "Montserrat", sans-serif;
+      font-size: 15px;
+      background: #E0E0E0;
+    }
+
+</style>
