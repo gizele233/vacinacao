@@ -23,8 +23,8 @@ export default new Vuex.Store({
       let response = await Api().get('questionarios/');
       commit('SET_QUESTIONARIOS', response.data);
     },
-     async loadQuestionario({commit}, data){
-      let response = await Api().get('questionarios/'+data)
+     async loadQuestionario({commit}, questionarioId){
+      let response = await Api().get(`questionarios/${questionarioId}`)
       commit('SET_QUESTIONARIO', response.data);
     } 
   },

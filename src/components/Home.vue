@@ -69,7 +69,7 @@
     
     computed:{
       questionarios(){ return this.$store.state.questionarios},
-      questionario(){return this.$store.state.questionario}
+      
     },
     
     //questionarioService: null,
@@ -86,7 +86,7 @@
         })
       }, */
        acessar(fomularioEscolhido){
-        router.push('/questionarios/'+ fomularioEscolhido)
+        router.push('questionarios/'+ fomularioEscolhido)
        /*  this.questionarioService.get(fomularioEscolhido).then(resposta =>{
           this.fomularioEscolhido = resposta;
           //console.log(this.fomularioEscolhido)
@@ -118,24 +118,3 @@
   
 </script>
 
-<!-- COLOCADO POR MIM, YASMIN-->
-<style scoped>
-  
-
-  @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
-  
-  * {
-      padding:0;
-      margin:0;
-      vertical-align:baseline;
-      list-style:none;
-      border:0
-    }
-
-    #app {
-      font-family: "Montserrat", sans-serif;
-      font-size: 15px;
-      background: #E0E0E0;
-    }
-
-</style>
