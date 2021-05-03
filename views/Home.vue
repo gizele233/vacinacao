@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
   <v-card 
-    class="pa-md-4 mx-lg-auto mb-10 red darken-4"
+    class="pa-md-4 mx-lg-auto mb-10 grey darken-3 container"
     width="85%"
     >
     <v-card-title>
@@ -16,7 +16,7 @@
         single-line
         hide-details
       ></v-text-field>
-
+  
       <v-spacer></v-spacer>
 
     </v-card-title>
@@ -37,7 +37,7 @@
         
           <v-btn
               icon
-              color="red darken-4"
+              color="grey darken-3"
               @click="acessar(item.formularioId)"
             >
             
@@ -60,48 +60,59 @@
 </template>
 
 <script>
-  //import QuestionarioService from "@/services/questionarioService.js";
-  import router from '../router/index.js';
-  
+  import router from '../src/router/index.js';
+  import Api from "@/services/config.js";
 
   export default {
 
     
-    computed:{
-      questionarios(){ return this.$store.state.questionarios},
+    // computed:{
+    //   questionarios(){ 
+    //     return this.$store.state.questionarios
+    //   },
       
-    },
-    
-    //questionarioService: null,
-    /* created(){
-      this.questionarioService = new QuestionarioService();
-      this.listarQuestion();
-    }, */
+    // },
 
-    methods: {
-      /* listarQuestion(){
-        this.questionarioService.questionAll().then(resposta => {
-          this.questionario = resposta; //popula a tabela com o conteúdo da resposta da requisição
-          this.loading = false
-        })
-      }, */
-       acessar(fomularioEscolhido){
+    mounted(){
+      
+      Api().get(`questionarios/`).then(response => {
+        this.questionarios =  response.data; 
+        this.listarQuestion();
+      });
+
+    },
+
+    methods:{
+      acessar(fomularioEscolhido){
         router.push('questionarios/'+ fomularioEscolhido)
-       /*  this.questionarioService.get(fomularioEscolhido).then(resposta =>{
-          this.fomularioEscolhido = resposta;
-          //console.log(this.fomularioEscolhido)
-        }) */
-      }, 
+      },
+
+      listarQuestion(){
+        for(var i=0; i<this.questionarios.length; i++){
+          this.dataFormatada = this.formataStringData(this.questionarios[i].dataUltimoEnvio);
+          this.questionarios[i].dataUltimoEnvio = this.dataFormatada;
+        }
+      },
+
+      formataStringData(data){
+        if(data != null){
+          const [day, month, year] = data.split("-");
+          return `${day}/${month}/${year}`;
+        }else{
+          return null;
+        }
+      }  
     },
     
 
     data() {
       return {
+        dataFormatada: null,
         page: 1,
         search: '',
         loading: true,
+        questionarios: [],
         fomularioEscolhido: [],
-        //questionario: [],
         headers: [
           {
             align: 'start',
@@ -117,4 +128,10 @@
   }
   
 </script>
+
+<style scoped>
+  .container{
+    margin: 0 auto;
+  }
+</style>
 

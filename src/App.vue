@@ -1,8 +1,5 @@
 <template>
 <div>
-  <!-- <router-link to="/"> Início </router-link> -->
-  <!-- <router-link to="/questionario"> Formulários </router-link> -->
-  <!-- src="https://www6.tce.ma.gov.br/autentica/imagens/logo_tce_amfc.png" -->
   
   <v-app id="app">
     
@@ -18,8 +15,8 @@
         <v-img
           max-height="180" 
           max-width="350"
-          src="src\assets\logo_tce.png"
-          class="mb-10"
+          src="./assets/logo_tce.png"
+          class="mb-10 ml-7"
         >
         </v-img>
           <router-view/>
@@ -46,7 +43,7 @@ export default {
   mounted(){
       this.$store.dispatch('loadQuestionarios');
       
-    },
+  },
 
   components: {
    // Home,
@@ -75,6 +72,11 @@ export default {
       font-family: "Montserrat", sans-serif;
       font-size: 15px;
       background: #E0E0E0;
+    }
+
+    .container--fluid{
+      padding:0;
+      margin:0;
     }
 
 </style>

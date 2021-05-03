@@ -10,6 +10,7 @@ export default new Vuex.Store({
     questionarios: [],
     questionario: null,
   },
+
   mutations: {
     SET_QUESTIONARIOS(state, questionarios ){
       state.questionarios = questionarios;
@@ -18,16 +19,19 @@ export default new Vuex.Store({
       state.questionario = questionario;
     }
   },
+
   actions: {
     async loadQuestionarios({commit}){
       let response = await Api().get('questionarios/');
       commit('SET_QUESTIONARIOS', response.data);
     },
-     async loadQuestionario({commit}, questionarioId){
+
+    async loadQuestionario({commit}, questionarioId){
       let response = await Api().get(`questionarios/${questionarioId}`)
       commit('SET_QUESTIONARIO', response.data);
     } 
   },
+  
   modules: {
   }
 })
