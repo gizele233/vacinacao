@@ -78,6 +78,7 @@
       Api().get(`questionarios/`).then(response => {
         this.questionarios =  response.data; 
         this.listarQuestion();
+        console.log(this.questionarios);
       });
 
     },

@@ -15,7 +15,6 @@
 
      <!-- <v-toolbar-title id="cabecalho" class="pa-md-4 mx-lg-auto mb-10 grey darken-3"
     width="95%" color="white">{{this.ente.nome}}</v-toolbar-title> -->
-    
 
 <div v-for="questao  in questionario.questoes" :key="questao.numero">
 
@@ -47,7 +46,7 @@
         </thead>
         <tbody>
           <tr v-for="documento in questao.documentos" :key="documento.arquivo">
-            <td>{{documento.dataEnvio}}</td>
+            <td>{{documento.dataEnvio | moment("DD/MM/YYYY h:mm:ss")}}</td>
             <td><a :href="`https://www6.tce.ma.gov.br/questionarios-vacinacao/v2/questionarios/download/ente/${ente.enteId}/arquivo/${documento.arquivo}`">{{documento.arquivo}}</a></td>
           </tr>
         </tbody>
@@ -62,7 +61,6 @@
 
     <v-row
       class="mt-3 ml-1 mb-1"
-      align="right"
     >
       <v-btn
         tile
@@ -79,6 +77,8 @@
       </v-card>
       
     </v-container>
+
+    
   
 </template>
 
@@ -89,9 +89,10 @@ import Api from "@/services/config.js";
 import router from '../src/router/index.js';
 
 export default {
-  
+
   data(){
     return {
+    dataFormatada: null,
     questionario:{},
     questionarioId:this.$route.params.id,
     ente:{}
@@ -101,15 +102,32 @@ export default {
 
   mounted(){
     Api().get(`questionarios/${this.questionarioId}`).then(response => {
-      this.questionario =  response.data; 
+      this.questionario = response.data; 
       this.ente = response.data.ente;
+      // this.listarQuestion();  
     });
   },
 
   methods:{
     voltar(){
       router.push("/");
-    }
+    },
+
+    // listarQuestion(){
+    //   for(var i=0; i< this.questionario.questoes.length; i++){
+    //     this.dataFormatada = this.formataStringData(this.questionario.questoes[i].documentos[0].dataEnvio + ' funfou');
+    //     this.questionario.questoes[i].documentos[0].dataEnvio = this.dataFormatada;
+    //   }   
+    // },
+
+    // formataStringData(data){
+    //   if(typeof data !== "undefined"){
+    //     const [day, month, year] = data.split("-");
+    //     return `${day}/${month}/${year}`;
+    //   }else{
+    //     return null;
+    //   }
+    // }
   }
   
   
