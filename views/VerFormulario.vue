@@ -139,60 +139,58 @@ export default {
 
   @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
 
-    #cabecalho {
-      font-family: "Montserrat", sans-serif;
-      font-size: 30px;
-      color: #E0E0E0;
-      text-transform: uppercase;
-      font-weight: bold;
-    }
+   
 
-    .container{
-      margin: 0 auto;
-    }
+  .container{
+    margin: 0 auto;
+  }
 
-    th{
-      font-weight: bold;
-      word-break: keep-all;
-    }
-    
 
-    th, td {
-      padding: 15px;
-      color: black;
-    }
-    
-    table {
-      font-family: "Montserrat", sans-serif;
-      font-size: 15px;
-      border-collapse: collapse;
-      width: 100%;
-      text-align: justify;
-      text-justify: inter-word;
-      color: black;
-      
-    }
+  #cabecalho {
+    font-family: "Montserrat", sans-serif;
+    font-size: 30px;
+    color: #E0E0E0;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
 
-    table, td, th {  
-      border: 2px solid #ddd;
-      text-align: left;
-    }
+  th{
+    font-weight: bold;
+    word-break: keep-all;
+  }
 
-    table {
-      table-layout:fixed;
-    }
+  th, td {
+    padding: 15px;
+    color: black;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: justify;
+    text-justify: inter-word;
+    color: black;
+  }
 
-    td {
-      white-space: wrap;
-      background-color: white;
-      width: 700px;
-      word-wrap: break-word;
-    }
+  table, td, th {  
+    border: 2px solid #ddd;
+    text-align: left;
+  }
 
-    th {
-      background-color: white;
-      color: black;
-    }
+  table {
+    table-layout:fixed;
+    empty-cells: hide;
+  }
+
+  td {
+    white-space: wrap;
+    background-color: white;
+  }
+
+  th {
+    background-color: white;
+    color: black;
+  }
     
 
 </style>
