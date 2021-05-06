@@ -36,7 +36,7 @@
     <th>Justificativa</th>
     <td>{{questao.justificativa}}</td>
   </tr>
-  <tr v-if="questao.documentos">
+  <tr v-if="questao.documentos.length > 0 ">
     <td colspan=2>
       <table >
         <thead class="mt-3">
@@ -46,7 +46,7 @@
         </thead>
         <tbody>
           <tr v-for="documento in questao.documentos" :key="documento.arquivo">
-            <td>{{documento.dataEnvio | moment("DD/MM/YYYY h:mm:ss")}}</td>
+            <td>{{ documento.dataEnvio.substring(0,2)}}/{{documento.dataEnvio.substring(3,5)}}/{{documento.dataEnvio.substring(6,10)}}</td>
             <td><a :href="`https://www6.tce.ma.gov.br/questionarios-vacinacao/v2/questionarios/download/ente/${ente.enteId}/arquivo/${documento.arquivo}`">{{documento.arquivo}}</a></td>
           </tr>
         </tbody>
@@ -87,6 +87,7 @@
 //import store from '../src/store/index.js';
 import Api from "@/services/config.js";
 import router from '../src/router/index.js';
+import moment from 'moment'
 
 export default {
 
@@ -99,6 +100,7 @@ export default {
 
     }
   },
+  
 
   mounted(){
     Api().get(`questionarios/${this.questionarioId}`).then(response => {
@@ -107,11 +109,13 @@ export default {
       // this.listarQuestion();  
     });
   },
-
   methods:{
     voltar(){
       router.push("/");
     },
+    moment: function () {
+    return moment();
+  }
 
     // listarQuestion(){
     //   for(var i=0; i< this.questionario.questoes.length; i++){
@@ -163,7 +167,7 @@ export default {
     padding: 15px;
     color: black;
   }
-  
+
   table {
     border-collapse: collapse;
     width: 100%;
