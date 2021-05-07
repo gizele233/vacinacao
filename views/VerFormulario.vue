@@ -12,7 +12,7 @@
         </h3>
       </v-card-title>
       <v-row class="mt-3 ml-1 mb-5">
-        <v-btn tile color="primary" @click="voltar()">
+        <v-btn color="primary" elevation="2" @click="voltar()">
           <v-icon left font-weight="bold"> mdi-arrow-left </v-icon>
           Voltar
         </v-btn>
@@ -73,7 +73,7 @@
       </div>
 
       <v-row class="mt-3 ml-1 mb-1">
-        <v-btn tile color="primary" @click="voltar()">
+        <v-btn color="primary" elevation="2" @click="voltar()">
           <v-icon left> mdi-arrow-left </v-icon>
           Voltar
         </v-btn>

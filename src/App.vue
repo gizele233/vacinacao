@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class>
   
   <v-app id="app">
     
@@ -16,7 +16,7 @@
           max-height="180" 
           max-width="350"
           src="./assets/logo_tce.png"
-          class="mb-10 ml-16 mr-5"
+          class="mb-8 ml-16"
         >
         </v-img>
           <router-view/>
