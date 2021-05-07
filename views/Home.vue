@@ -6,13 +6,19 @@
     >
     <v-card-title>
      <h3 class="mt-5 mb-5 text-center white--text">QUESTIONÁRIO DE VACINAÇÃO CONTRA O SARS-COV2</h3>
+      
       <v-spacer></v-spacer>
-
+      <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
+      
       <v-text-field
         dense
+        
+        solo
         v-model="search"
         append-icon="mdi-magnify"
-        label="Search"
+        label="Pesquisar"
+        color="white"
         single-line
         hide-details
       ></v-text-field>
