@@ -81,7 +81,7 @@
 
     mounted(){
       
-      Api().get(`questionarios/`).then(response => {
+      Api().get(`formulario/find-all`).then(response => {
         this.questionarios =  response.data; 
         this.listarQuestion();
         console.log(this.questionarios);
@@ -103,8 +103,7 @@
 
       formataStringData(data){
         if(data != null){
-          const [day, month, year] = data.split("-");
-          return `${day}/${month}/${year}`;
+          return data.substring(8, 10)+"/"+data.substring(5, 7)+"/"+data.substring(0, 4);
         }else{
           return null;
         }

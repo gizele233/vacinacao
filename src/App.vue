@@ -16,7 +16,7 @@
           max-height="180" 
           max-width="350"
           src="./assets/logo_tce.png"
-          class="mb-8 ml-16"
+          class="mb-8 ml-12"
         >
         </v-img>
           <router-view/>

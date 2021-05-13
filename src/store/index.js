@@ -22,12 +22,12 @@ export default new Vuex.Store({
 
   actions: {
     async loadQuestionarios({commit}){
-      let response = await Api().get('questionarios/');
+      let response = await Api().get('formulario/find-all');
       commit('SET_QUESTIONARIOS', response.data);
     },
 
     async loadQuestionario({commit}, questionarioId){
-      let response = await Api().get(`questionarios/${questionarioId}`)
+      let response = await Api().get(`formulario/find-by-id/{formularioId}/${questionarioId}`)
       commit('SET_QUESTIONARIO', response.data);
     } 
   },

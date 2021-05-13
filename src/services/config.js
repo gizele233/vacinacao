@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default () =>{  return axios.create({
-    baseURL: 'https://www6.tce.ma.gov.br/questionarios-vacinacao/v2/',
+    baseURL: 'https://apps.tce.ma.gov.br/vacinacao/api/',
     
     headers: {
         Accept: "application/json",

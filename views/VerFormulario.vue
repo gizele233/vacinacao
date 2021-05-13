@@ -25,15 +25,15 @@
         <table>
           <tr>
             <th>Número</th>
-            <td>{{ questao.numero }}</td>
+            <td>{{ questao.modeloQuestao.numero }}</td>
           </tr>
           <tr>
             <th>Enunciado</th>
-            <td>{{ questao.enunciado }}</td>
+            <td>{{ questao.modeloQuestao.enunciado }}</td>
           </tr>
           <tr>
             <th>Resposta</th>
-            <td>{{ questao.resposta }}</td>
+            <td>{{ questao.alternativa.descricao }}</td>
           </tr>
           <tr>
             <th>Justificativa</th>
@@ -53,13 +53,13 @@
                     :key="documento.arquivo"
                   >
                     <td>
-                      {{ documento.dataEnvio.substring(0, 2) }}/{{
-                        documento.dataEnvio.substring(3, 5)
-                      }}/{{ documento.dataEnvio.substring(6, 10) }}
+                      {{ documento.dataEnvio.substring(8, 10) }}/{{
+                        documento.dataEnvio.substring(5, 7)
+                      }}/{{ documento.dataEnvio.substring(0, 4) }}
                     </td>
                     <td>
                       <a
-                        :href="`https://www6.tce.ma.gov.br/questionarios-vacinacao/v2/questionarios/download/ente/${ente.enteId}/arquivo/${documento.arquivo}`"
+                        :href="`http://dados.tce.ma.gov.br/vacinacao/${ente.enteId}/${documento.arquivo}`"
                         >{{ documento.arquivo }}</a
                       >
                     </td>
@@ -101,9 +101,10 @@ export default {
 
   mounted() {
     Api()
-      .get(`questionarios/${this.questionarioId}`)
+      .get(`formulario/find-by-id/${this.questionarioId}`)
       .then((response) => {
         this.questionario = response.data;
+        this.questionario.questoes.sort((a,b) => a.modeloQuestao.numero - b.modeloQuestao.numero)
         this.ente = response.data.ente;
         // this.listarQuestion();
       });
