@@ -18,9 +18,6 @@
         </v-btn>
       </v-row>
 
-      <!-- <v-toolbar-title id="cabecalho" class="pa-md-4 mx-lg-auto mb-10 grey darken-3"
-    width="95%" color="white">{{this.ente.nome}}</v-toolbar-title> -->
-
       <div v-for="questao in questionario.questoes" :key="questao.numero">
         <table>
           <tr>
@@ -31,12 +28,12 @@
             <th>Enunciado</th>
             <td>{{ questao.modeloQuestao.enunciado }}</td>
           </tr>
-          <tr>
+          <tr v-if="questao.alternativa">
             <th>Resposta</th>
             <td>{{ questao.alternativa.descricao }}</td>
           </tr>
           <tr>
-            <th>Justificativa</th>
+            <th >Justificativa</th>
             <td>{{ questao.justificativa }}</td>
           </tr>
           <tr v-if="questao.documentos.length > 0">

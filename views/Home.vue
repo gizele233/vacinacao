@@ -84,7 +84,6 @@
       Api().get(`formulario/find-all`).then(response => {
         this.questionarios =  response.data; 
         this.listarQuestion();
-        console.log(this.questionarios);
       });
 
     },
