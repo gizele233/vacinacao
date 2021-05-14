@@ -1,0 +1,55 @@
+# Paineld de Vacinação
+# Mantenedor: Gizele Rodrigues <gizelesilva@tcema.tc.br>
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vacinacao
+  namespace: desenvolvimento
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vacinacao
+  template:
+    metadata:
+      labels:
+        app: vacinacao
+        hash: a12343
+    spec:
+      containers:
+        - name: vacinacao
+          image: tcema/vacinacao
+          imagePullPolicy: 'Always'
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vacinacao
+  namespace: desenvolvimento
+spec:
+  selector:
+    app: vacinacao
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vacinacao
+  namespace: desenvolvimento
+spec:
+  rules:
+    - host: apps.tce.ma.gov.br
+      http:
+        paths:
+          - pathType: Prefix
+            path: /vacinacao
+            backend:
+              service:
+                name: vacinacao
+                port:
+                  number: 8080
